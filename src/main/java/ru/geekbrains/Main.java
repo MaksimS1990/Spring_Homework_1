@@ -13,6 +13,7 @@ public class Main {
         System.out.println("Сериализованный объект: \n" + file);
 
         Person p = gson.fromJson(file, Person.class);
+
         System.out.println("Десериализация объекта: \n" + p.toString());
 
 
