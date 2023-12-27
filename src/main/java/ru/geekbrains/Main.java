@@ -1,6 +1,5 @@
 package ru.geekbrains;
 
-import java.io.*;
 import com.google.gson.Gson;
 
 public class Main {

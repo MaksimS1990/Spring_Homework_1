@@ -6,6 +6,7 @@
 
     <groupId>ru.geekbrains</groupId>
     <artifactId>Spring_HW1</artifactId>
+    <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>

@@ -35,7 +35,9 @@ public class Person implements Serializable {
     }
 
 
-    public boolean equals(Person person) {
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person person)) return false;
         return new EqualsBuilder()
                 .append(firstName, person.firstName)
                 .append(lastName, person.lastName)
