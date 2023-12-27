@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Person implements Serializable {
 
@@ -34,6 +35,19 @@ public class Person implements Serializable {
         return age;
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, age);
+    }
 
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,14 +59,10 @@ public class Person implements Serializable {
     }
 
     public int hashcode() {
-        return new HashCodeBuilder()
-                .append(firstName)
-                .append(lastName)
-                .append(age)
-                .toHashCode();
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
-    public String toString() {
+    public String toString(Object o) {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }
 }
