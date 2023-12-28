@@ -1,20 +1,20 @@
 package ru.geekbrains;
 
+import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
-import java.io.Serializable;
-import java.util.Objects;
+public class Person {
+    @SerializedName("firstName")
+    private String firstName;
+    @SerializedName("lastName")
+    private String lastName;
+    @SerializedName("age")
+    private int age;
 
-public class Person implements Serializable {
-
-    public String firstName;
-
-    public String lastName;
-
-    public int age;
+    public Person() {
+    }
 
     public Person(String firstName, String lastName, int age) {
         this.firstName = firstName;
@@ -26,43 +26,42 @@ public class Person implements Serializable {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public int getAge() {
         return age;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
-        return "Person{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
+        return new ToStringBuilder(this)
+                .append("firstName", this.firstName)
+                .append("lastName", this.lastName)
+                .append("age", this.age)
+                .toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return EqualsBuilder.reflectionEquals(this, other);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, age);
-    }
-
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Person person)) return false;
-        return new EqualsBuilder()
-                .append(firstName, person.firstName)
-                .append(lastName, person.lastName)
-                .append(age, person.age).isEquals();
-    }
-
-    public int hashcode() {
         return HashCodeBuilder.reflectionHashCode(this);
-    }
-
-    public String toString(Object o) {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }
 }
